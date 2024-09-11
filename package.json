@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "app": "^0.1.0",
     "express": "^4.20.0"
   }
 }
