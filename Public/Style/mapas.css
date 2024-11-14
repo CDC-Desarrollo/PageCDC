@@ -1,63 +1,8 @@
-.ok{
+
+.activeState{
     fill: rgb(108,192,74);
     fill-opacity: 50%;
 }
-.ok:hover{
-    fill-opacity: 100%;
-}
-.tx{
-    fill: rgb(108,192,74);
-    fill-opacity: 50%;
-}
-.tx:hover{
-    fill-opacity: 100%;
-}
-.fl{
-    fill: rgb(108,192,74);
-    fill-opacity: 50%;
-}
-.fl:hover{
-    fill-opacity: 100%;
-}
-.nv{
-    fill: rgb(108,192,74);
-    fill-opacity: 50%;
-}
-.nv:hover{
-    fill-opacity: 100%;
-}
-.ca{
-    fill: rgb(108,192,74);
-    fill-opacity: 50%;
-}
-.ca:hover{
-    fill-opacity: 100%;
-}
-.pa{
-    fill: rgb(108,192,74);
-    fill-opacity: 50%;
-}
-.pa:hover{
-    fill-opacity: 100%;
-}
-.ny{
-    fill: rgb(108,192,74);
-    fill-opacity: 50%;
-}
-.ny:hover{
-    fill-opacity: 100%;
-}
-.md{
-    fill: rgb(108,192,74);
-    fill-opacity: 50%;
-}
-.md:hover{
-    fill-opacity: 100%;
-}
-.nj{
-    fill: rgb(108,192,74);
-    fill-opacity: 50%;
-}
-.nj:hover{
+.activeState:hover{
     fill-opacity: 100%;
 }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Style/Style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="FondoParteBlanca">
+        <div class="Logo">
+
+            </div>
+    </div>
+    
+    <div class="FondoParteVerde">
+        <div class="log" id="logg">
+            <h1>Archivos Varios</h1>
+            <form action="" method="post" id="frmLogin" enctype="application/x-www-form-urlencoded">
+                <p>Usuario <input type="text" name="user"></p>
+                <p>Contraseña <input type="password" name="cont"></p>
+            </form>
+            <button type="button" id="ingresar">
+                <b>Ingresar</b>
+            </button>
+        </div>
+    </div>
+
+    <script>
+    
+    document.getElementById('ingresar').addEventListener('click', async() => {
+
+        let form=document.getElementById('frmLogin');
+        let fromdata=new FormData(form);
+        const cadenaInicioSesion=new URLSearchParams(fromdata).toString()
+
+        console.log(form)
+        console.log(fromdata.get('user'))
+        console.log(fromdata.get('cont'))
+
+        let response = await fetch('http://localhost:8080/LogIn', { 
+        method: "POST",
+        headers: {"Content-Type":"application/x-www-form-urlencoded"},
+        body: cadenaInicioSesion
+        });
+
+        let EsAdmin=null;
+        let data=await response.json();
+          console.log(data);
+        data.forEach(Elemento => {
+            console.log(Elemento.Adm);
+            EsAdmin=Elemento.Adm
+            sessionStorage.setItem('ID_Empleado',Elemento.ID_Empleado);
+            sessionStorage.setItem('Departamento', Elemento.Departamento);
+            sessionStorage.setItem('Admin', Elemento.Adm)
+        });
+        
+        if (EsAdmin != null) {
+            window.location.href = '/PrincipalPage'; 
+        } else {
+            // Limpiar mensajes de error anteriores
+            const existingError = document.getElementById("error-message");
+            if (existingError) {
+                existingError.remove();
+            }
+
+            var opcion = document.createElement("div");
+            opcion.id = "error-message"; 
+            var Texto = document.createTextNode("Usuario o contraseña incorrectas, intente nuevamente");
+            opcion.appendChild(Texto);
+
+            var currentDiv = document.getElementById("logg");
+
+            currentDiv.appendChild(opcion);
+
+        }
+    });
+
+    </script>
+</body>
+</html>
