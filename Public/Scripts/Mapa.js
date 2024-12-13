@@ -186,12 +186,19 @@ async function MostrarInfo(idEstado) {
    function MapaActivos() {
     let data = Activos();
     let elementos = document.querySelectorAll('svg path');
+    console.log(elementos)
 
     elementos.forEach(function(elemento) {
-        elemento.addEventListener("click", function() {
+        console.log(elemento);
+        
+      
             let nombreClase = elemento.className.baseVal || elemento.className;
+            let data=Activos();
+            console.log(data);
             
             data.forEach(E => {
+                console.log("Este es dentro ", E);
+                
                 if (nombreClase == E.id) {
                     // Asegúrate de realizar alguna acción con los elementos que tienen la clase 'ok'
                     let elementosOk = document.getElementsByClassName('ok');
@@ -203,7 +210,7 @@ async function MostrarInfo(idEstado) {
                     });
                 }
             });
-        });
+      
     });
 }
 
