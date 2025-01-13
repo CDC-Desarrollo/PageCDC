@@ -23,21 +23,21 @@ async function Estados(ed) {
       });
       
       let data = await response.json();
-      console.log(data);
+    //   console.log(data);
 
     data.forEach(E => {
-        if(E.id==ed){
+        if(E.id+" activeState"==ed){
            
 
             const Head=document.getElementById('HeaderEstado');
             Head.innerText=''
 
-            console.log(E.NombreEst)
+            // console.log(E.NombreEst)
             Head.innerText=E.NombreEst
 
             const Cuerpo=document.getElementById('ParrafoEstado')
             Cuerpo.innerText=''
-            console.log(E.info)
+            // console.log(E.info)
             Cuerpo.innerText=E.info
 
             togglePopup();
@@ -49,7 +49,7 @@ async function Estados(ed) {
 function Colorear() {
     var estadoacolorear = document.getElementById('est');
     var ec = estadoacolorear.value;
-    console.log(ec);
+    // console.log(ec);
 
     // Obtener todos los elementos con la clase especificada
     var EstSelec = document.getElementsByClassName(ec);
@@ -62,7 +62,7 @@ function Colorear() {
             EstSelec[i].classList.toggle('active');
         }
     } else {
-        console.log('No se encontraron elementos con la clase:', ec);
+        // console.log('No se encontraron elementos con la clase:', ec);
     }
 }
 
@@ -95,7 +95,7 @@ async function TodosEstados() {
       });
       
       let data = await response.json();
-      console.log(data);
+    //   console.log(data);
       
       const Insetrar=document.getElementById('InsertarCuerpo');
       Insetrar.innerHTML=``;
@@ -156,7 +156,7 @@ async function MostrarInfo(idEstado) {
       });
       
       let data = await response.json();
-      console.log(data);
+    //   console.log(data);
 
       let txtNombreEstado=data[0].NombreEst;
       let txtActivo=data[0].activo;
@@ -165,7 +165,7 @@ async function MostrarInfo(idEstado) {
       const idInfo=document.getElementById('Info');
       const idActivoEstado=document.getElementById('ActivoEstado');
 
-      console.log('Nombre ',txtNombreEstado,'Info ',txtInfo,'Activo',txtActivo);
+    //   console.log('Nombre ',txtNombreEstado,'Info ',txtInfo,'Activo',txtActivo);
       
 
       idNombreEstado.textContent=txtNombreEstado;
@@ -184,34 +184,40 @@ async function MostrarInfo(idEstado) {
 
 
    function MapaActivos() {
-    let data = Activos();
-    let elementos = document.querySelectorAll('svg path');
-    console.log(elementos)
 
-    elementos.forEach(function(elemento) {
-        console.log(elemento);
-        
-      
-            let nombreClase = elemento.className.baseVal || elemento.className;
-            let data=Activos();
-            console.log(data);
+    let elementos = document.querySelectorAll('svg path');
+    // console.log(elementos)
+
+
+    Activos().then(data =>{
+
+        elementos.forEach(function(elemento) {
+            // console.log(elemento);
             
-            data.forEach(E => {
-                console.log("Este es dentro ", E);
+          
+                let nombreClase = elemento.className.baseVal || elemento.className;
+           
+                // console.log(data);
                 
-                if (nombreClase == E.id) {
-                    // Asegúrate de realizar alguna acción con los elementos que tienen la clase 'ok'
-                    let elementosOk = document.getElementsByClassName('ok');
+                data.forEach(E => {
+                    // console.log("Este es dentro ", E);
                     
-                    // Ejemplo de iteración y modificación de los elementos con clase 'ok'
-                    Array.from(elementosOk).forEach(okElemento => {
-                        okElemento.classList.toggle("activeState");
-                        // O cualquier otra acción que quieras realizar
-                    });
-                }
-            });
-      
-    });
+                    if (nombreClase == E.id) {
+                        // Asegúrate de realizar alguna acción con los elementos que tienen la clase 'ok'
+                        let elementos= document.getElementsByClassName(E.id);
+                        
+                        // Ejemplo de iteración y modificación de los elementos con clase 'ok'
+                        Array.from(elementos).forEach(okElemento => {
+                            okElemento.classList.toggle("activeState");
+                            // O cualquier otra acción que quieras realizar
+                        });
+                    }
+                });
+          
+        });
+
+    })
+    
 }
 
 async function Activos() {

@@ -2,23 +2,24 @@ const express=require('express');
 const app=express();
 const path=require('path');
 const mysql2 =require('mysql2');
-require('dotenv').config();
-app.use(express.json()); 
 const fs =require('fs');
 const nodemailer = require("nodemailer");
 const cors=require('cors');
-app.use(cors());
+const multer = require('multer');
 
+require('dotenv').config();
+
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.static(path.join(__dirname, 'Public')));
+app.use(express.static(path.join(__dirname, 'Data')));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'Views'))
 
-app.use(express.static(path.join(__dirname, 'Public')));
 
-app.use(express.static(path.join(__dirname, 'Data')));
+const IMAGES_DIR = path.join(__dirname, 'public/images');
 
 const connection=mysql2.createConnection({
     host:process.env.DB_Host,
@@ -37,6 +38,11 @@ connection.connect((err) => {
 app.get('/', (req,res)=>{
     res.render('home');
 });
+
+app.get('/Prueba', (req,res)=>{
+    res.render('Prueba');
+});
+
 
 app.get('/Admin', (req,res)=>{
     res.render('InicioAdmin');
@@ -132,6 +138,14 @@ const sendEmail = async (to, subject, text,cc) => {
 
  })
 
-app.listen(8080, (req,res)=>{
+ app.get('/api/Images', (req, res) => {
+    fs.readdir(IMAGES_DIR, (err, files) => {
+      if (err) return res.status(500).json({ error: 'Error al obtener las imágenes' });
+      const imageUrls = files.map(file => `/Images/${file}`);
+      res.json(imageUrls);
+    });
+  });
+
+app.listen(process.env.PORT, (req,res)=>{
 console.log("servidor en marcha en http://localhost:8080/")
 });
