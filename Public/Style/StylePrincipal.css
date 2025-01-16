@@ -17,10 +17,6 @@ body{
     font-family: 'AvenirNext', sans-serif ;
 }
 
-body .contenido{
-    margin:auto;
-}
-
 h1{
     margin: 0%;
     color: #ffffff;
@@ -98,8 +94,8 @@ li div:hover{
 .contenido{
     width: fit-content;
     height: auto;
-    margin: auto;
-    margin-top: 150px;
+    /* margin: auto; */
+    margin:  100px auto ;
 }
 
 
@@ -122,7 +118,7 @@ li div:hover{
     left: 50%;
     transform:translate(-50%,-50%) scale(0);
     background-color: whitesmoke;
-    width: 450px;
+    width: auto;
     height: auto;
     z-index:2;
     text-align: center;
@@ -137,6 +133,8 @@ box-shadow: 0px 0px 31px -12px rgba(0,0,0,0.75); */
     background-color: whitesmoke;
     border-radius: 20px;
     border: 20px solid whitesmoke;
+    /* width: fit-content; */
+    width: fit-content;
   }
 .content .Cerrar{
     cursor: pointer;
@@ -197,7 +195,7 @@ box-shadow: 0px 0px 31px -12px rgba(0,0,0,0.75); */
 }
 
 
-  .enviar button{
+.enviar button{
     color: whitesmoke;
     background-color: rgba(108, 192, 74, .6);
     border: none;
@@ -206,11 +204,11 @@ box-shadow: 0px 0px 31px -12px rgba(0,0,0,0.75); */
     height: 40px;
     font-size: large;
   }
-  #buttonEnv :hover{
+#buttonEnv :hover{
     background-color: rgba(108, 192, 74, 1);
   }
 
-  table {
+table {
     width: 100%;
     border-collapse: collapse; /* Elimina espacios entre celdas */
     margin: 20px 0;

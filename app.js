@@ -139,13 +139,82 @@ const sendEmail = async (to, subject, text,cc) => {
  })
 
  app.get('/api/Images', (req, res) => {
-    fs.readdir(IMAGES_DIR, (err, files) => {
+  const carpeta=req.query.carpeta
+  const carpetas=IMAGES_DIR+'/'+carpeta
+    fs.readdir(carpetas, (err, files) => {
       if (err) return res.status(500).json({ error: 'Error al obtener las imágenes' });
-      const imageUrls = files.map(file => `/Images/${file}`);
+      const imageUrls = files.map(file => `/Images/${carpeta}/${file}`);
       res.json(imageUrls);
     });
   });
 
+
+  
+
+
+// Configuración de almacenamiento
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    // Carpeta personalizada desde la solicitud
+    const folder = req.body.folder || 'default';
+    const uploadPath = IMAGES_DIR+"\\" +folder
+
+    cb(null, uploadPath); // Asigna la carpeta donde se guardará el archivo
+  },
+  filename: (req, file, cb) => {
+    // Nombre del archivo personalizado desde la solicitud
+    const customName = req.body.filename || `file_${Date.now()}`;
+    const extension = path.extname(file.originalname); // Extensión del archivo
+    const newFilename = `${customName}${extension}`;
+
+    cb(null, newFilename); // Asigna el nombre del archivo
+  },
+});
+
+// Crear el middleware de multer
+const upload = multer({
+  storage: storage  
+  // limits: { fileSize: 5 * 1024 * 1024 }, // Tamaño máximo: 5 MB
+});
+
+// Ruta para subir archivos
+app.post('/upload', upload.single('image'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: 'No se subió ningún archivo' });
+  }
+
+  res.json({
+    message: 'Archivo subido exitosamente',
+    filename: req.file.filename,
+    path: `/uploads/${req.body.folder || 'default'}/${req.file.filename}`,
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 app.listen(process.env.PORT, (req,res)=>{
 console.log("servidor en marcha en http://localhost:8080/")
 });

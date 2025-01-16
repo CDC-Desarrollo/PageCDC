@@ -18,3 +18,14 @@
 //       elementoServicio.classList.add("animationSlitIn");
 //     }
 //   });
+
+window.addEventListener('scroll', () => {
+    const menu = document.getElementById('menu');
+    const menuTop = menu.getBoundingClientRect().top;
+  
+    if (menuTop <= 0) {
+      menu.classList.add('scrolled'); // Cambiar el color
+    } else {
+      menu.classList.remove('scrolled'); // Volver al color original
+    }
+  });

@@ -13,13 +13,30 @@
     </style>
 </head>
 <body>
+
     <div id="galeria"> </div>
 
-    <button id="btnCargarImagen">Cargar Imagen</button>
+    <button id="btnCargarImagen" >Cargar Imagen</button>
+
+    <h1>Subir Archivo con Carpeta y Nombre Personalizados</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+      <label for="folder">Nombre de la carpeta:</label>
+      <input type="text" id="folder" name="folder" placeholder="Carpeta personalizada">
+      <br><br>
+      <label for="filename">Nombre del archivo:</label>
+      <input type="text" id="filename" name="filename" placeholder="Nombre del archivo">
+      <br><br>
+      <input type="file" name="image" required>
+      <br><br>
+      <button type="submit">Subir Archivo</button>
+    </form>
+
+    <button style="width: 50px; border: 0px; background: none;" id="btnEditarImagenes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>18.Pencil</title><g id="_18.Pencil" data-name="18.Pencil"><path d="M12,24A12,12,0,1,1,24,12,12.013,12.013,0,0,1,12,24ZM12,2A10,10,0,1,0,22,12,10.011,10.011,0,0,0,12,2Z"/><path d="M11.242,18H7V13.757l8.071-8.07,4.242,4.242ZM9,16h1.414l6.071-6.071L15.071,8.515,9,14.585Z"/><rect x="12.414" y="9.586" width="2" height="4" transform="translate(-4.264 12.877) rotate(-44.995)"/></g></svg>
+    </button>
     <script>
 
         document.getElementById('btnCargarImagen').addEventListener('click',async() => {
-            let response = await fetch("http://localhost:8080/api/Images", { 
+            let response = await fetch("http://localhost:8080/api/Images?carpeta=Pruebas", { 
             method: "GET",
             });
 
@@ -43,6 +60,33 @@
                 galeria.appendChild(imagenes)
             });
         
+        });
+
+        // document.getElementById('btnEditarImagenes').addEventListener('click',async() => {
+            
+        // });
+
+
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+
+            try {
+                const response = await fetch('/upload', {
+                method: 'POST',
+                body: formData,
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                alert(`Archivo subido exitosamente:\n${data.path}`);
+                } else {
+                alert(`Error: ${data.error}`);
+                }
+            } catch (error) {
+                console.error('Error al subir el archivo:', error);
+            }
         });
 
 

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Style/StylePrincipal.css">
+    <link rel="stylesheet" href="/Style/AdministradorStyle.css">
 
     <title>Document</title>
 </head>
@@ -13,17 +14,16 @@
         <h1>ADMINISTRADOR </h1>
         <ul class="menu">
             <li id="M1" onclick="TablaEstados()"> Mapa</li>
-
+            <li id="M2" onclick="Imagen()"> Imagenes</li>
         </ul>
     </nav>
     <div class="contenido">
 
-        <div id="Pestana" style="width: 100%; height: 100%;">
-            
-        </div>
+        <div id="Pestana" style="width: 100%; height: 100%;"></div>
 
     </div>
     <script src="/Scripts/Mapa.js"></script>
+    <script src="/Scripts/Administrador.js"></script>
 
     <div class="popup" id="Contactanos">
         <div class="overlay" onclick="togglePopupEditar()"></div>
@@ -55,5 +55,20 @@
     </div>
   </div>
 
+
+  <div class="popup" id="editImg">
+    <div class="overlay" onclick="togglePopup()"></div>
+
+      <div class="content"  style=" background-color: rgb(255, 255, 255); box-sizing: border-box; border: 20px solid rgb(108, 192, 74); border-radius: 30px; padding: 0;; ">
+        <div class="cont">
+          <div class="Cerrar" onclick="togglePopup()">&times;</div>
+            <h1>Editar</h1>
+            <div id="contenedorImg"></div>
+
+            <button id="SubirImagen">Cambiar imagen</button>
+          </div>
+        </div>
+      </div>
+  
 </body>
 </html>
