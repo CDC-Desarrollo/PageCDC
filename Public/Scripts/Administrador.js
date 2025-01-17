@@ -102,6 +102,10 @@ function EditarImagen(carpeta, noArchivo){
     console.log(carpeta, noArchivo);
     document.getElementById("editImg").classList.toggle("active");
 
+    const encabezado=document.getElementById('EncabezadoPopup')
+    encabezado.textContent=carpeta
+
+
     ObtenerImagenes(carpeta).then(data =>{
         console.log("Los datos que estan en la carpeta ",carpeta," son: ",data)
        
@@ -112,8 +116,9 @@ function EditarImagen(carpeta, noArchivo){
             if(i==noArchivo-1){
                 console.log(data[i]);
                 const img=document.createElement('img')
-                img.id=carpeta+noArchivo;
+                img.name=carpeta+noArchivo;
                 img.src=data[i];
+                img.id='imagenRemplazo'
 
                 const divImg=document.getElementById('contenedorImg');
                 divImg.appendChild(img)
@@ -135,5 +140,51 @@ function togglePopup(){
     document.getElementById("editImg").classList.toggle("active");
     const divImg=document.getElementById('contenedorImg');
     divImg.innerHTML=``;
-    
+    Imagen();
 }
+
+
+
+async function subirArchivo(){
+    const imagenRemplazo=document.getElementById('imagenRemplazo')
+    console.log(imagenRemplazo.name);
+    
+    const encabezado=document.getElementById('EncabezadoPopup')
+
+    console.log(encabezado.textContent)
+
+    const inputFile = document.getElementById('inputFile');
+    if (inputFile.files.length === 0) {
+        alert('Por favor, selecciona un archivo para subir.');
+        return;
+    }
+    const file = inputFile.files[0]; // Primer archivo seleccionado
+    console.log('Archivo seleccionado:', file.name);
+
+    const formData = new FormData();
+    
+    formData.append('filename',imagenRemplazo.name)
+    formData.append('folder',encabezado.textContent)
+    formData.append('image', file);
+   
+    console.log(...formData);
+
+    try {
+        const response = await fetch('/upload', {
+        method: 'POST',
+        body: formData
+        // ,headers:{"Content-Type":"multipart/form-data"}
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+        alert(`Archivo subido exitosamente:\n${data.path}`);
+        } else {
+        alert(`Error: ${data.error}`);
+        }
+    } catch (error) {
+        console.error('Error al subir el archivo:', error);
+    }
+
+}
+

@@ -62,11 +62,21 @@
       <div class="content"  style=" background-color: rgb(255, 255, 255); box-sizing: border-box; border: 20px solid rgb(108, 192, 74); border-radius: 30px; padding: 0;; ">
         <div class="cont">
           <div class="Cerrar" onclick="togglePopup()">&times;</div>
-            <h1>Editar</h1>
-            <div id="contenedorImg"></div>
+            <h1 id="EncabezadoPopup">Editar</h1>
+            <div id="contenedorImg">
+            </div>
 
-            <button id="SubirImagen">Cambiar imagen</button>
-          </div>
+           
+            <br><br>
+            <!-- <form aid="uploadForm" enctype="multipart/form-data"> -->
+
+              <input id="inputFile" type="file" name="image" required>
+              <br>
+              <button id="SubirImagen" type="button" onclick="subirArchivo()">Cambiar imagen</button>
+            <!-- </form> -->
+            </div>
+
+         
         </div>
       </div>
   

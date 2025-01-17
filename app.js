@@ -171,9 +171,20 @@ const storage = multer.diskStorage({
   },
 });
 
+
+const fileFilter = (req, file, cb) => {
+  // Verifica que el archivo tenga el tipo MIME correspondiente a JPG
+  if (file.mimetype === 'image/jpeg') {
+    cb(null, true); // Acepta el archivo
+  } else {
+    cb(new Error('Solo se permiten archivos JPG')); // Rechaza el archivo
+  }
+};
+
 // Crear el middleware de multer
 const upload = multer({
-  storage: storage  
+  storage: storage  ,
+  fileFilter: fileFilter
   // limits: { fileSize: 5 * 1024 * 1024 }, // Tamaño máximo: 5 MB
 });
 
@@ -184,29 +195,11 @@ app.post('/upload', upload.single('image'), (req, res) => {
   }
 
   res.json({
-    message: 'Archivo subido exitosamente',
+    message: 'Archivo subido exitosamente', 
     filename: req.file.filename,
     path: `/uploads/${req.body.folder || 'default'}/${req.file.filename}`,
   });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
