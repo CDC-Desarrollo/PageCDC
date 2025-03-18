@@ -46,26 +46,52 @@ async function SacarGuia(guia) {
     // .then((result) => console.log(result))
     // .catch((error) => console.error(error));
 
-    const myHeaders = new Headers();
-myHeaders.append("Cookie", "PHPSESSID=2kr6tkhisc9qs0d0rqqun8dko2");
+        // const myHeaders = new Headers();
+        // myHeaders.append("Cookie", "PHPSESSID=2kr6tkhisc9qs0d0rqqun8dko2");
 
-const formdata = new FormData();
-formdata.append("username", "usrconsultaguias");
-formdata.append("password", "USAmx2022*@pro");
-formdata.append("guia", "MOR139004502");
+        // const formdata = new FormData();
+        // formdata.append("username", "usrconsultaguias");
+        // formdata.append("password", "USAmx2022*@pro");
+        // formdata.append("guia", "MOR139004502");
 
-const requestOptions = {
-  method: "POST",
-  headers: myHeaders,
-  body: formdata,
-  redirect: "manual"
-};
+        // const requestOptions = {
+         
+        //     mode: "no-cors", // Usa "cors" en lugar de "no-cors"
+        //     credentials: "include", // Permite el envío de cookies si el servidor lo permite
+        //     method: "POST",
+        //     headers: myHeaders,
+        //     body: formdata,
+        //     redirect: "follow" 
+        // };
 
-try {
-  const response = await fetch("https://controldecarga.ecusmart.net/webservice/ws_status_guia.php", requestOptions);
-  const result = await response.json();
-  console.log(result)
-} catch (error) {
-  console.error(error);
-};
+        // try {
+        // const response = await fetch("https://controldecarga.ecusmart.net/webservice/ws_status_guia.php", requestOptions);
+        // const result = await response.text();
+        // console.log(result)
+        // } catch (error) {
+        // console.error(error);
+        // };
+
+        // let headersList = {
+        //     // "Accept": "*/*",
+        //     // "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+        //     "mode": "no-cors"
+        //    }
+           
+           let bodyContent = new FormData();
+           bodyContent.append("username", "usrconsultaguias");
+           bodyContent.append("password", "USAmx2022*@pro");
+           bodyContent.append("guia", "MOR139004502");
+           
+           let response = await fetch("https://controldecarga.ecusmart.net/webservice/ws_status_guia.php", { 
+            mode: "no-cors", // Usa "cors" en lugar de "no-cors"
+            method: "POST",
+            body: bodyContent,
+            redirect: "follow", 
+            headers: {"Content-Type": "application/json"}
+           });
+           
+           let data = await JSON.stringify(response);
+           console.log(data);
+           
     }

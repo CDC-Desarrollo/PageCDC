@@ -16,7 +16,7 @@
 
     <div id="galeria"> </div>
 
-    <button id="btnCargarImagen" >Cargar Imagen</button>
+    <button  onclick="PeticionGuia()">Cargar Imagen</button>
 
     <h1>Subir Archivo con Carpeta y Nombre Personalizados</h1>
     <form id="uploadForm" enctype="multipart/form-data">
@@ -89,6 +89,29 @@
             }
         });
 
+
+       async function PeticionGuia() {
+        const myHeaders = new Headers();
+        myHeaders.append("Cookie", "PHPSESSID=mj0mf2h0voepu3635j9q816no3");
+
+        const formdata = new FormData();
+        formdata.append("username", "usrconsultaguias");
+        formdata.append("password", "USAmx2022*@pro");
+        formdata.append("guia", "MOR139004502");
+
+        const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: formdata,
+        redirect: "follow"
+        };
+
+        fetch("https://controldecarga.ecusmart.net/webservice/ws_status_guia.php", requestOptions, { mode: 'no-cors' })
+        .then((response) => response.json())
+        .then((result) => console.log(result))
+        .catch((error) => console.error(error));
+
+       }
 
     </script>
 </body>
