@@ -1,0 +1,306 @@
+@media (max-width: 900px ) {
+
+    html{
+        font-size: 13px;
+    }
+    #logo{
+        width: 400px;
+        height: 400px;
+        padding: 0;
+    }
+    #logo img{
+        width: 400px;
+        height: 400px;
+    }
+   
+    
+    .contenedor{
+        margin: 0;
+    }
+    .ContenedorImg{
+        height: 1200px;
+    }
+    .imgsvg1{
+        scale: .9;
+    }
+    #mapa{
+        justify-content: center; /* Centra horizontalmente */
+        align-items: center;  
+    }
+    .svg2{
+        scale: .6;
+    }
+    .selectores-list :hover{
+        width: auto;
+        background:rgba(135, 255, 88, 0.2);
+        border-radius: 10px;
+        font-size:large;
+    }
+
+    .displayMenu{
+        display: block;
+    }
+  
+    #ElementosDelMenu {
+
+        position: fixed;
+        left: -250px; /* Oculta el sidebar fuera de la vista */
+        top: 0;
+        height: 100%;
+        width: 250px;
+        background-color:  #6cc04a;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: left 0.3s ease;
+        z-index: 5;
+       overflow: hidden;
+    }
+    #ElementosDelMenu ul {
+        flex-direction: column;
+        width: 100%;
+    }
+    #ElementosDelMenu ul li {
+        margin: 10px 0;
+        width: 100%;
+        text-align: center;
+        align-items: center;
+    }
+    #ElementosDelMenu ul li a {
+        display: block;
+        padding: 10px 0;
+        width: 100%;
+    }
+    #menu.actived #ElementosDelMenu  {
+        left: 0; /* Despliega el sidebar */
+    }
+
+
+    #menu.actived .overlay{
+
+        display: block;
+    }
+
+    #MyV{
+        flex-direction: column-reverse;
+    }
+    #mision{
+        width: 500px;
+        padding: 10px;
+    }
+    #vision{
+        width: 500px;
+        padding: 10px;
+    }
+    .galeria{
+        width: 500px;
+        height: 750px;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto auto;
+        gap:10px;
+        padding: 10px;
+    }
+   #QuienesSomos .miss{
+    width: 500px;
+   }
+
+  
+
+   #Servicios .Servicio{
+    width: 200px;
+    height: 300px;
+    align-content: center;
+    margin: 1vw auto;
+}
+.Servicio img{
+    width: 150px;
+    transform: translate(30px,0);
+
+}
+.Servicio p
+{
+    text-align: center;
+    font-size: 30px;
+}
+
+.Slog{
+    height: 20vh;
+}
+
+/* Estadisticas */
+
+#Estadisticas #Categorias{
+    margin:0 3% ;
+    padding: 0;
+}
+
+#Estadisticas #categoriaCliente{
+    flex-wrap: wrap-reverse;
+
+}
+
+#Estadisticas .contadores{
+    width: 100%;
+    text-align: center;
+    padding: 2.7%;
+}
+
+#Estadisticas .NombreCat{
+    border-right: 0;
+    padding: 1%;
+    margin: 1% 0;
+    overflow: hidden;
+}
+
+#NombreCatClientes{
+    width: 76vw;
+}
+
+
+.contReview{
+    width: 65vw;
+    margin-right: 10vw;
+}
+.contReview p{
+    font-size: 2rem;
+}
+
+.contAvatar{
+    width: 80px;
+    height: 80px;
+   
+}
+
+.contEstrellas{
+    width: 20vw;
+}
+
+#bannerClientes{
+    text-align: center;
+}
+
+.NombreCat{
+    width: 100%;
+}
+
+
+.popup .content{
+    border:13px solid rgb(107, 192, 74); 
+    padding: 5%;
+
+}
+
+.content .Cerrar{
+    right:10px;
+    top: 10px;
+    width:  20px;
+    height: 20px ;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+#storyBoard{
+    gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+    "sb1 sb2"
+    "sb3 sb4"
+    "sb5 sb5";
+}
+
+#storyBoard div{
+    height: auto;
+}
+
+#storyBoard div img{
+    width: 35vw;
+    height: auto;
+}
+
+
+#sb1{
+    grid-area:sb1;
+}
+
+
+#sb2{
+    grid-area:sb2;
+}
+
+#sb3{
+    grid-area:sb3;
+}
+
+#sb4{
+    grid-area:sb4;
+}
+
+#sb5{
+    grid-area:sb5;
+}
+/* Mapa */
+
+#mapa{
+    flex-wrap: wrap-reverse;
+    padding: 0;
+}
+
+#banner{
+    text-align: center;
+    margin: 0;
+    width: 60%;
+    font-size: 2rem;
+}
+
+
+#Preg{
+    flex-wrap: wrap-reverse;
+}
+#preguntas{
+    width: 100%;
+}
+
+.slider-box{
+    width:466.66px;   
+}
+
+
+.slider-box img{
+    
+    height: 350px;
+}
+
+#icoGuia{
+    width: 20px;
+}
+
+.contenedorGuia{
+
+grid-template-columns:35% 1fr;
+}
+
+.infoGuiaContenedor{
+grid-template-columns:15% 1fr;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

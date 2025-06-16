@@ -1,15 +1,20 @@
 
 document.addEventListener('DOMContentLoaded', () => {
+    
     MapaActivos()
     var elementos = document.querySelectorAll('svg path');
-
     elementos.forEach(function(elemento) {
-    elemento.addEventListener("click", function() {
-    var nombreClase = elemento.className.baseVal || elemento.className;
-    Estados(nombreClase)
-        
+        elemento.addEventListener("click", function() {
+            var nombreClase = elemento.className.baseVal || elemento.className;
 
-    });
+            if (elemento.classList.contains('activeState')) {
+                Estados(nombreClase)
+              }
+              else{
+                EstadoNoActivo(nombreClase)
+              }
+
+        });
    });
  });
 
@@ -25,7 +30,7 @@ async function Estados(ed) {
       let data = await response.json();
     //   console.log(data);
 
-    data.forEach(E => {
+    data.results.forEach(E => {
         if(E.id+" activeState"==ed){
            
 
@@ -45,26 +50,32 @@ async function Estados(ed) {
     });
 }
 
+async function EstadoNoActivo(ed) {
 
-function Colorear() {
-    var estadoacolorear = document.getElementById('est');
-    var ec = estadoacolorear.value;
-    // console.log(ec);
-
-    // Obtener todos los elementos con la clase especificada
-    var EstSelec = document.getElementsByClassName(ec);
-
-    // Verificar si se obtuvieron elementos
-    if (EstSelec.length > 0) {
-        // Iterar sobre la colección de elementos
-        for (var i = 0; i < EstSelec.length; i++) {
-            // Alternar la clase 'active'
-            EstSelec[i].classList.toggle('active');
-        }
-    } else {
-        // console.log('No se encontraron elementos con la clase:', ec);
-    }
+    console.log("El elemento no esta activo")
+    
 }
+
+
+// function Colorear() {
+//     var estadoacolorear = document.getElementById('est');
+//     var ec = estadoacolorear.value;
+//     // console.log(ec);
+
+//     // Obtener todos los elementos con la clase especificada
+//     var EstSelec = document.getElementsByClassName(ec);
+//     console.log("Estado selecto", EstSelec)
+//     // Verificar si se obtuvieron elementos
+//     if (EstSelec.length > 0) {
+//         // Iterar sobre la colección de elementos
+//         for (var i = 0; i < EstSelec.length; i++) {
+//             // Alternar la clase 'active'
+//             EstSelec[i].classList.toggle('active');
+//         }
+//     } else {
+//         // console.log('No se encontraron elementos con la clase:', ec);
+//     }
+// }
 
 
 function TablaEstados() {
@@ -99,7 +110,7 @@ async function TodosEstados() {
       
       const Insetrar=document.getElementById('InsertarCuerpo');
       Insetrar.innerHTML=``;
-    data.forEach(Estado => {
+    data.results.forEach(Estado => {
         var renglon=document.createElement('tr')
 
 
@@ -156,34 +167,28 @@ async function MostrarInfo(idEstado) {
       });
       
       let data = await response.json();
-    //   console.log(data);
 
-      let txtNombreEstado=data[0].NombreEst;
-      let txtActivo=data[0].activo;
-      let txtInfo=data[0].info
-      const idNombreEstado=document.getElementById('NombreEstado');
-      const idInfo=document.getElementById('Info');
-      const idActivoEstado=document.getElementById('ActivoEstado');
+        let txtNombreEstado=data[0].NombreEst;
+        let txtActivo=data[0].activo;
+        let txtInfo=data[0].info
+        const idNombreEstado=document.getElementById('NombreEstado');
+        const idInfo=document.getElementById('Info');
+        const idActivoEstado=document.getElementById('ActivoEstado');
 
-    //   console.log('Nombre ',txtNombreEstado,'Info ',txtInfo,'Activo',txtActivo);
-      
+        //   console.log('Nombre ',txtNombreEstado,'Info ',txtInfo,'Activo',txtActivo);
+        
 
-      idNombreEstado.textContent=txtNombreEstado;
-      idInfo.textContent=txtInfo;
-      if(txtActivo==1){
-        idActivoEstado.checked=true
-      }
+        idNombreEstado.textContent=txtNombreEstado;
+        idInfo.textContent=txtInfo;
+        if(txtActivo==1){
+            idActivoEstado.checked=true
+        }
 
 
 }
 
-// console.log( document.getElementsByClass('ok').classList.toggle("activeState"));
 
-// window.onload(
-//    )
-
-
-   function MapaActivos() {
+function MapaActivos() {
 
     let elementos = document.querySelectorAll('svg path');
     // console.log(elementos)
@@ -226,6 +231,6 @@ async function Activos() {
       });
       
       let data = await response.json();
-      return data;
+      return data.results;
     
 }

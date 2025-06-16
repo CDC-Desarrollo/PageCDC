@@ -3,6 +3,7 @@
     fill: rgb(108,192,74);
     fill-opacity: 50%;
 }
+
 .activeState:hover{
     fill-opacity: 100%;
 }

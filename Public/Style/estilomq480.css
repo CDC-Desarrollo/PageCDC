@@ -1,0 +1,156 @@
+
+@media (max-width: 480px) {
+
+
+    html{
+        font-size: 11px;
+    }
+
+
+    .cont{
+    padding: 0px;
+}
+.miss{
+    width: 90%;
+    padding: 0;
+}
+#logo{
+    width: 300px;
+    height: 300px;
+}
+#logo img{
+    width: 300px;
+    height: 300px;
+}
+
+#QuienesSomos img{
+    width: 300px;
+    height: auto;
+}
+#QuienesSomos .miss{
+    width:300px;
+}
+
+.selectores-list{
+    font-size:medium;
+}
+.selectores-list :hover{
+    width: auto;
+    background:rgba(135, 255, 88, 0.2);
+    border-radius: 10px;
+    font-size:large;
+}
+#Legend #prom
+{
+    padding: 5px 30px;
+}
+/* #menu{
+    align-items: end;
+} */
+/* #ElementosDelMenu {
+
+    position: fixed;
+    left: -250px; 
+    top: 0;
+    height: 100%;
+    width: 250px;
+    background-color:  rgba(108, 192, 74, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: left 0.3s ease;
+    z-index: 1000;
+    
+} */
+
+#ElementosDelMenu ul {
+    flex-direction: column;
+    width: 100%;
+}
+#ElementosDelMenu ul li {
+    margin: 10px 0;
+    width: 100%;
+    text-align: center;
+}
+#ElementosDelMenu ul li a {
+    display: block;
+    padding: 10px 0;
+    width: 100%;
+}
+#menu.active #ElementosDelMenu  {
+    left: 0; /* Despliega el sidebar */
+}
+#Locales{
+height: auto;
+}
+#mision{
+width: 300px;
+padding: 10px;
+}
+#vision{
+    width: 300px;
+    padding: 10px;
+}
+
+#NombreCatClientes{
+    width: 70vw;
+}
+
+
+
+
+.galeria{
+    /* background-color: #eb0029; */
+    width: fit-content;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto;
+    padding: 0;
+}
+.g{
+    width: fit-content;
+    height: fit-content;
+}
+.g img{
+    width: 170px;
+    height: 150px;
+}
+#MyV{
+    padding: 70px 10px;
+}
+
+.ContenedorImg{
+    margin: 0;
+}
+
+#preguntas {
+    display: block;
+
+}
+
+.pregunta:hover + .respuesta {
+    max-height: 200px; 
+    opacity: 1;
+    padding: 10px 10px 10px 30px; 
+}
+
+
+
+.slider-box{
+    width:279.996px;   
+}
+
+
+.slider-box img{
+    
+    height: 210px;
+}
+
+.contEstrellas{
+    width: 25vw;
+   
+} 
+    
+}
